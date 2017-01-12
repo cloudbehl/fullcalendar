@@ -1,0 +1,32 @@
+.fc-cell-overlay {
+    background: #2ed39e;
+    opacity: 1;
+}
+table tr:first-child th {
+    border-top: 0;
+}
+table tr:last-child td {
+    border-bottom: 0;
+}
+table tr td:first-child,
+table tr th:first-child {
+    border-left: 0;
+}
+table tr td:last-child,
+table tr th:last-child {
+    border-right: 0;
+}
+.fc-other-month{
+	background: #f8f8f8;
+}
+.fc-grid .fc-day-number {
+	float: left;
+	padding: 4px 2px;
+	color: #b3b3b3;
+}
+.fc-grid .fc-other-month .fc-day-number {
+	opacity: 1	;
+}
+.fc, .fc table {
+    font-size: 1.2em;
+}

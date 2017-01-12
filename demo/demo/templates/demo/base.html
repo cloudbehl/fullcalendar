@@ -1,0 +1,106 @@
+{% load fullcalendar_tags %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.8.3.js"></script>
+        <script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../static/fullcalendar/js/fullcalendar/gcal.js"></script>
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css">
+        <link rel="stylesheet" type="text/css" href="../../static/fullcalendar/js/fullcalendar/fullcalendar.css">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        {% fullcalendar_print_css %} 
+        {% calendar_init calendar_config_options %}
+        <!-- {% fullcalendar_css %} -->
+        {% fullcalendar_jquery_ui %}
+        {% fullcalendar_javascript %}
+        <link rel="stylesheet" type="text/css" href="../../static/fullcalendar/js/fullcalendar/style.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->        
+
+        {% block content %}
+
+        {% endblock %}
+        <div id="createEventModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <div class="controls controls-row" id="when" style="margin-top:5px;">
+        </div>
+        <div class="modal-body">
+        <form id="createAppointmentForm" class="form-horizontal" method="POST">
+        {% csrf_token %}
+            <div class="control-group">
+                <label class="control-label" for="Event">Event:</label>
+                <div class="controls">
+                    <input type="text" name="eventName" id="eventName" tyle="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source="[&quot;Value 1&quot;,&quot;Value 2&quot;,&quot;Value 3&quot;]" required>
+                </div>
+            </div>
+            <div class="control-group">
+            <label class="control-label" for="startDate">Start Date:</label>
+                <div class="controls">
+                      <input type="date" id="apptStartDate"/>
+                </div>      
+            </div>
+            <div class="control-group">
+            <label class="control-label" for="startTime">Start Time:</label>
+                <div class="controls">
+                      <input type="time" id="apptStartTime"/>
+                </div>      
+            </div>
+            <div class="control-group">
+            <label class="control-label" for="endDate">End Date:</label>
+                <div class="controls">
+                      <input type="date" id="apptEndDate"/>
+                </div>
+            </div>
+            <div class="control-group">
+            <label class="control-label" for="endDate">End Time :</label>
+                <div class="controls">
+                      <input type="time" id="apptEndTime"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                      <input type="checkbox" id="apptAllDay"/> All Day
+                </div>
+            </div>
+            </div>
+            <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="submitButton">Save</button>
+            </div>
+        </form>
+    </div>
+    </div>
+    <div id="fullCalModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                <h4 id="modalTitle" class="modal-title"></h4>
+            </div>
+            <div id="modalBody" class="show-modal"></div>
+            <div class="modal-footer" method="POST">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type= "button" class="btn btn-primary" id="deleteEvent">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="dialog" title="" style="display:none;">Are you sure want to delete it?</div>
+    <script type="text/javascript" src="../../static/fullcalendar/js/fullcalendar/custom.js"></script>
+    </body>
+</html>
